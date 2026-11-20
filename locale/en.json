@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "dsh-chatterbox",
-    "description": "大肥鱼 (Dayufeiyu) — a Japanese voice companion for DeepSeek. Talk with your 大肥鱼 by voice in Chinese, English or Japanese; she always replies in Japanese. Push-to-talk and a hands-free microphone, and it keeps answering in the background. For first-time setup, ask an AI to read docs\\INSTALL.zh.md in the plugin folder.",
+    "description": "A Japanese voice companion for DeepSeek. Talk with your deepseek by voice in Chinese, English or Japanese; she always replies in Japanese. Push-to-talk and a hands-free microphone, and it keeps answering in the background. For first-time setup, ask an AI to read docs\\INSTALL.zh.md in the plugin folder.",
     "detail": "docs/DETAIL.md"
   }
 }

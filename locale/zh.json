@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "dsh-chatterbox",
-    "description": "大肥鱼日语语音软件，可以随时用中日英和你的大肥鱼语音聊天对话，她会以日语回复。支持按键发言、自由麦克风，可以后台响应。初次安装请让AI阅读插件根目录的docs\\INSTALL.zh.md",
+    "description": "大肥鱼日语语音插件，可以随时用中日英和你的大肥鱼语音聊天对话，她会以日语回复。支持按键发言、自由麦克风，可以后台响应。初次安装请让AI阅读插件根目录的docs\\INSTALL.zh.md",
     "detail": "docs/DETAIL.zh.md"
   }
 }
