@@ -6,7 +6,23 @@
 
 ---
 
-## 0. 先看清哪些会自动、哪些要你动手
+## 0. 前置条件（先对一遍）
+
+| 项 | 要求 | 怎么查 |
+|---|---|---|
+| 系统 | **Windows 10/11**（插件依赖 PowerShell 与 Windows 音频） | — |
+| DSH | 已安装并能打开 Web 界面 | — |
+| Python | **3.10 或更高**（识别 venv 用；`bootstrap` 能自动找 `py -3` / `python`） | `py -3 --version` |
+| uv | Irodori venv 的包管理器（[安装说明](https://github.com/astral-sh/uv)） | `uv --version` |
+| 磁盘 | 约 **10 GB** 空闲（识别 venv 0.14 GB + Irodori venv 5.2 GB + HF 权重 4.6 GB + ASR 模型 0.23 GB） | `Get-PSDrive C` |
+| 端口 | **18801**（插件）与 **8763**（TTS 服务）空闲 | `Get-NetTCPConnection -LocalPort 18801,8763 -ErrorAction SilentlyContinue` |
+| 显卡 | 可选。有 NVIDIA GPU 时 Irodori 装 cu128 版；没有就去掉 `--extra cu128` | `nvidia-smi` |
+
+> 全部装完占约 10 GB，其中 5.2 GB 与 4.6 GB 是「出声」用的；只想要语音识别不装 TTS 也能用（只是没有声音）。
+
+---
+
+## 0.1 先看清哪些会自动、哪些要你动手
 
 | 步骤 | 自动？ | 说明 |
 |---|---|---|
@@ -19,12 +35,43 @@
 
 ---
 
-## 1. 放进插件并启用
+## 1. 安装插件
 
-1. 把 `dsh-chatterbox\` 放到任意目录（建议随工作区）；
+两种方式，任选其一。
+
+### 1.1 从 GitHub 安装（一般用户）
+
+仓库：<https://github.com/najizhimo/dsh-chatterbox>
+
+1. 打开 DSH 的**插件管理器** → 安装 bundle；
+2. 目标填下面任一形式：
+
+   ```
+   github:najizhimo/dsh-chatterbox
+   ```
+
+   或直接填仓库地址：
+
+   ```
+   https://github.com/najizhimo/dsh-chatterbox
+   ```
+
+3. 安装完成后重启 DSH（或重载插件）；设置 → 插件里应出现 **dsh-chatterbox**，
+   以及它的配置页与「chatterbox 依赖」页。
+
+如果管理器拒绝 GitHub 形式，用下面的本地方式。
+
+### 1.2 本地目录安装（开发者 / 离线）
+
+1. 把仓库克隆或解压到任意目录（建议随工作区）：
+
+   ```powershell
+   git clone https://github.com/najizhimo/dsh-chatterbox.git "<插件>"
+   ```
+
 2. 在 DSH 里安装（二选一）：
    - 插件管理器 → 安装 bundle → 目标填 `link:<插件目录的绝对路径>`；
-   - 或手工：profile 的 `package.json` 加 `"@local/dsh-chatterbox": "link:<插件目录>"`，`cordis.patch.yml` 末尾用 `insert:` 加一行：
+   - 或手工：profile 的 `package.json` 加 `"dsh-chatterbox": "link:<插件目录>"`，`cordis.patch.yml` 末尾用 `insert:` 加一行：
 
      ```yaml
      - insert:
@@ -34,6 +81,8 @@
              port: 18801
      ```
 3. 重启 DSH 或重载插件。
+
+> 提示：`<插件>` 指 dsh-chatterbox 目录本身；后面的脚本与文档里的路径都按它展开。
 
 ---
 

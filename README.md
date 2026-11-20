@@ -13,8 +13,13 @@
 
 ## 安装
 
-按 [`docs/INSTALL.zh.md`](docs/INSTALL.zh.md) 走：装插件 → 跑 `tools\bootstrap.ps1` →
-两段联网命令（Irodori venv、HF 权重）→ 把音色文件夹放进 `deps\voices\` → 依赖页检测全绿。
+前置：Windows 10/11、DSH、Python 3.10+、[uv](https://github.com/astral-sh/uv)、约 10 GB 磁盘、端口 18801/8763 空闲。
+
+**从 GitHub 安装**：插件管理器 → 安装 bundle → 填 `github:najizhimo/dsh-chatterbox`，重启 DSH。
+也可以 `git clone` 后用 `link:<插件目录>` 安装（见安装指南）。
+
+装好后按 [`docs/INSTALL.zh.md`](docs/INSTALL.zh.md) 走：跑 `tools\bootstrap.ps1` →
+两段联网命令（Irodori venv、HF 权重）→ 音色文件夹放进 `deps\voices\` → 依赖页检测全绿。
 依赖的准确名称、官方地址与体积见 [`docs/DEPENDENCIES.zh.md`](docs/DEPENDENCIES.zh.md)。
 
 ## 文档
