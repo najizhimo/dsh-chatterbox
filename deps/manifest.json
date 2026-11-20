@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "updated": "2026-11-20",
+  "root": "deps",
+  "note": "外部依赖下载清单：插件依赖页的「下载并安装缺失」按这里执行。URL 全部来自上游官方发布页，改动前先核对 docs/DEPENDENCIES.zh.md。",
+  "items": [
+    {
+      "id": "asr-model",
+      "label": "SenseVoice-Small int8（sherpa-onnx 官方发布包）",
+      "kind": "tar.bz2",
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2",
+      "archiveRoot": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17",
+      "installTo": "models/sensevoice-onnx",
+      "sizeBytes": 163000000,
+      "paths": [{ "key": "asrModelDir", "value": "models" }],
+      "provides": ["asr-model", "asr-tokens"]
+    },
+    {
+      "id": "vad-model",
+      "label": "Silero VAD v4（sherpa-onnx 官方发布）",
+      "kind": "file",
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad_v4.onnx",
+      "installTo": "models/silero/silero_vad.onnx",
+      "sizeBytes": 1807522,
+      "paths": [{ "key": "asrModelDir", "value": "models" }],
+      "provides": ["vad-model"]
+    },
+    {
+      "id": "irodori-src",
+      "label": "Irodori-TTS 源码（GitHub main 分支快照）",
+      "kind": "zip",
+      "url": "https://codeload.github.com/Aratako/Irodori-TTS/zip/refs/heads/main",
+      "archiveRoot": "Irodori-TTS-main",
+      "installTo": "irodori",
+      "sizeBytes": 3000000,
+      "paths": [{ "key": "ttsIrodori", "value": "irodori" }],
+      "provides": ["irodori-src"]
+    }
+  ],
+  "manual": [
+    {
+      "id": "venv",
+      "label": "识别用 venv（Python 3 + sherpa-onnx / sounddevice / soundfile / pypinyin / keyboard / numpy）",
+      "command": "子目录里跑 tools\\setup-voice-venv.ps1 自动建；或自己建 venv 后 pip install 这 6 个包，再在依赖页填「识别用 Python」。"
+    },
+    {
+      "id": "tts-python",
+      "label": "合成用 venv（Irodori-TTS 的 .venv，含 torch cu128）",
+      "command": "在 Irodori-TTS 源码目录里：uv sync --extra cu128 --frozen（约 5.2 GB，含 torch）；或在依赖页填「合成用 Python」。"
+    },
+    {
+      "id": "hf-cache",
+      "label": "HF 权重缓存（Aratako/Irodori-TTS-v4.1-Small、Aratako/Semantic-DACVAE-Japanese-32dim）",
+      "command": "任一装了 huggingface_hub 的 python：huggingface-cli download Aratako/Irodori-TTS-v4.1-Small --local-dir <缓存目录>\\hub\\models--Aratako--Irodori-TTS-v4.1-Small 等；或在依赖页填「HF 缓存目录」。"
+    }
+  ]
+}

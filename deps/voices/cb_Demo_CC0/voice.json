@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "plugin": "dsh-chatterbox",
+  "folder": "cb_Demo_CC0",
+  "profile": "Demo_CC0_ja",
+  "display": "公開デモ音声（LibriVox・PD）",
+  "names": {
+    "zh-Hans": "公开演示音声（LibriVox・公有领域）",
+    "ja": "公開デモ音声"
+  },
+  "cv": "LibriVox volunteer reader",
+  "work": "島崎藤村「眼鏡」（LibriVox #megane_1407）",
+  "ref": "samples/Demo_CC0_ja_sample.wav",
+  "ref_seconds": 30.0,
+  "ref_sample_rate": 44100,
+  "description": "落ち着いた朗読調の中性的な声。やや低めで明瞭、句間に自然な間がある。",
+  "description_zh": "偏朗读腔的中性嗓音，音域略低、吐字清晰，句间有自然停顿。",
+  "notes": "参考音取自 LibriVox 公开领域录音《眼鏡》（島崎藤村，read by LibriVox volunteers, item megane_1407_librivox），取第 2 章 158.8–188.8 秒片段、44.1 kHz 单声道、30.00 秒。录音以 Public Domain Mark 1.0 发布，可用于公开分发的演示。",
+  "skill": "SKILL.md",
+  "model_card": "MODEL_CARD.md",
+  "post": {
+    "breaths": "long",
+    "breath_min_pause": 0.6,
+    "leading_breath": true,
+    "keep_pause": 0.75,
+    "keep_pause_short": 0.5,
+    "short_line_s": 12,
+    "mute_pause": 0.5,
+    "topic_pause": 0.73,
+    "mute_db": -18,
+    "ramp_s": 0.06,
+    "lead_in_s": 0.2,
+    "tail_s": 0.12
+  },
+  "created": "2026-11-20",
+  "license": "Public Domain Mark 1.0 (https://creativecommons.org/publicdomain/mark/1.0/)",
+  "source": "https://archive.org/details/megane_1407_librivox"
+}

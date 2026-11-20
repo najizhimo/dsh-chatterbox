@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="A microphone on the left sends a spoken line over a dashed arrow into a conversation panel on the right, where it appears as the newest user message and the agent replies">
+  <rect width="640" height="300" fill="#0f1420"/>
+  <rect x="86" y="70" width="150" height="160" rx="18" fill="#182033" stroke="#2b3852" stroke-width="2"/>
+  <rect x="142" y="92" width="38" height="66" rx="19" fill="#6ea8ff"/>
+  <path d="M126 140v6a35 35 0 0 0 70 0v-6" fill="none" stroke="#6ea8ff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M161 184v14M141 202h40" stroke="#6ea8ff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M214 122a30 30 0 0 1 0 40" fill="none" stroke="#3c5c96" stroke-width="6" stroke-linecap="round"/>
+  <path d="M234 106a52 52 0 0 1 0 72" fill="none" stroke="#2b3f66" stroke-width="6" stroke-linecap="round"/>
+  <path d="M286 150h86" stroke="#6ea8ff" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <path d="M360 142l16 8-16 8z" fill="#6ea8ff"/>
+  <rect x="392" y="46" width="170" height="208" rx="18" fill="#182033" stroke="#2b3852" stroke-width="2"/>
+  <rect x="408" y="66" width="138" height="26" rx="13" fill="#22304a"/>
+  <rect x="408" y="104" width="104" height="26" rx="13" fill="#22304a"/>
+  <rect x="408" y="150" width="138" height="34" rx="14" fill="#2b6cf6"/>
+  <rect x="422" y="161" width="96" height="12" rx="6" fill="#cfe0ff"/>
+  <rect x="408" y="200" width="120" height="26" rx="13" fill="#22304a"/>
+  <circle cx="486" cy="213" r="7" fill="#6ea8ff"/>
+  <circle cx="504" cy="213" r="7" fill="#3c5c96"/>
+  <circle cx="522" cy="213" r="7" fill="#2b3f66"/>
+</svg>

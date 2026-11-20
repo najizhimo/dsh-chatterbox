@@ -1,0 +1,21 @@
+# Host row for dsh-chatterbox: the ingest listener plus the voice client it
+# supervises.
+#
+# sessionId locks every submission to one conversation. Leave it out to let the
+# plugin pick the conversation itself; set it once you have a fixed voice-chat
+# Session, e.g.  sessionId: session-00000000-0000-0000-0000-000000000000
+# That Session's agent also receives the voice conversation protocol, so it
+# answers with the configured voice profile; the reply shape comes from the
+# selected persona (personas/deepseek.json by default) — see docs/PERSONA.zh.md.
+#
+# voiceClient replaces the former @local/dsh-ptt-daemon plugin: ptt.py is spawned
+# with DSH, records on the hotkey, recognizes locally, and POSTs back here.
+- insert:
+    - id: chatterbox
+      name: 'dsh-chatterbox'
+      config:
+        port: 18801
+        voiceProtocol: true
+        voiceClient:
+          autoStart: true
+          hotkey: printscreen

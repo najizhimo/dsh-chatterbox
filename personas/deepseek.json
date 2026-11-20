@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "deepseek",
+  "display": "DeepSeek（标准）",
+  "address": "",
+  "note": "分发默认人格：不带角色名、不带称呼、两段正文（中文译文 / 日语原文+链接）。其它人格放在 ~/.dsh/chatterbox/personas/ 里。",
+  "segments": [
+    {
+      "id": "translation",
+      "label": "中文译文",
+      "spoken": false,
+      "instruction": "把要念的那句日语翻译成中文，只写译文，不加引号、不加「翻译：」。"
+    },
+    {
+      "id": "original",
+      "label": "日语原文",
+      "spoken": true,
+      "audio": true
+    }
+  ],
+  "preset": "standard",
+  "private": false
+}
