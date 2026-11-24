@@ -13,7 +13,7 @@ param(
 )
 
 $pids = @(
-    Get-CimInstance Win32_Process -Filter "Name='powershell.exe' OR Name='pythonw.exe'" -ErrorAction SilentlyContinue |
+    Get-CimInstance Win32_Process -Filter "Name='pwsh.exe' OR Name='powershell.exe' OR Name='pythonw.exe'" -ErrorAction SilentlyContinue |
         Where-Object {
             ($_.CommandLine -like '*play_media.ps1*') -or ($_.CommandLine -like '*winsound.PlaySound*')
         } |

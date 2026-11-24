@@ -1,5 +1,6 @@
 param(
-  [Parameter(Mandatory = $true)][string[]]$Paths
+  # 位置参数：直接跟文件路径（宿主按 "script.ps1 path1 path2 ..." 调用，7 与 5.1 都支持）
+  [Parameter(ValueFromRemainingArguments = $true, Mandatory = $true)][string[]]$Paths
 )
 # Move files to the Windows Recycle Bin (never delete outright).
 # Global rule: deletions go through the Recycle Bin so the owner can inspect them.

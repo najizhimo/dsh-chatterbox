@@ -28,6 +28,9 @@ HERE = pathlib.Path(__file__).resolve().parent          # <plugin>/src/tts
 PLUGIN = HERE.parent.parent                             # <plugin>
 DAEMON = HERE / 'tts_daemon.py'
 PLAYER = PLUGIN / 'tools' / 'play_media.ps1'
+# 优先 PowerShell 7，没有就退回 5.1（play_media.ps1 在 7 下实测可播、可正常退出）
+PS7 = pathlib.Path(os.environ.get('ProgramFiles', r'C:\Program Files')) / 'PowerShell' / '7' / 'pwsh.exe'
+POWERSHELL = str(PS7) if PS7.is_file() else 'powershell'
 OUT = PLUGIN / 'out'
 LOGS = PLUGIN / 'logs'
 # 音色档案根目录：工作区 voices 与插件自带 deps/voices 都扫，可用 --voices 覆盖（; 分隔）
@@ -188,7 +191,7 @@ def main():
             winsound.PlaySound(res['wav'], winsound.SND_FILENAME)
         elif args.player == 'mf':
             subprocess.Popen(
-                ['powershell', '-NoProfile', '-STA', '-WindowStyle', 'Hidden',
+                [POWERSHELL, '-NoProfile', '-STA', '-WindowStyle', 'Hidden',
                  '-ExecutionPolicy', 'Bypass',
                  '-File', str(PLAYER),
                  '-Path', res['wav']],

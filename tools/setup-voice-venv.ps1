@@ -1,8 +1,8 @@
 ﻿# -*- coding: utf-8 -*-
 # 建立 dsh-chatterbox 语音客户端的独立运行环境（幂等，可重复跑）。
 # 位置：dsh-chatterbox\tools\setup-voice-venv.ps1
-#   powershell -NoProfile -ExecutionPolicy Bypass -File setup.ps1
-#   powershell -NoProfile -ExecutionPolicy Bypass -File setup.ps1 -Mirror https://pypi.org/simple
+#   pwsh -NoProfile -File setup.ps1
+#   pwsh -NoProfile -File setup.ps1 -Mirror https://pypi.org/simple
 #
 # 装到 %LOCALAPPDATA%\dsh\dsh-chatterbox\venv，不碰任何工作区的 venv。
 

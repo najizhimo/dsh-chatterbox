@@ -1,5 +1,5 @@
 ﻿# 用 Windows Media Foundation（WPF MediaPlayer）播放一段 wav，播完自动退出。
-# 由 speak.py 以隐藏窗口方式启动：powershell -NoProfile -STA -WindowStyle Hidden -File play_media.ps1 -Path <wav>
+# 由 speak.py 以隐藏窗口方式启动：pwsh（或 5.1 的 powershell）-NoProfile -STA -WindowStyle Hidden -File play_media.ps1 -Path <wav>
 # 为什么不用 winsound：它走老的 waveOut/sndPlaySound，长于约 12 秒的音轨会把蓝牙链路拉断，
 # 整个耳机会静音，必须重连（2026-11-18 实测：10.07 s 正常，12.02 / 12.77 s 断）。
 

@@ -616,7 +616,7 @@ export function apply(ctx, config = {}) {
     log('free-mic: waiting for playback to finish')
     let child
     try {
-      child = spawn('powershell', [
+      child = spawn(psExe(), [
         '-NoProfile', '-ExecutionPolicy', 'Bypass',
         '-File', helper, '-TimeoutSeconds', '150',
       ], { windowsHide: true, stdio: 'ignore' })
@@ -1476,6 +1476,11 @@ export function apply(ctx, config = {}) {
     }
   }
 
+  // PowerShell：优先用 7（pwsh），没装就退回系统自带的 5.1。
+  // recycle / wait-playback / play_media 三个脚本都已在 7.6 下实测可用。
+  const PS7_EXE = path.join(process.env.ProgramFiles || 'C:\\Program Files', 'PowerShell', '7', 'pwsh.exe')
+  const psExe = () => (fs.existsSync(PS7_EXE) ? PS7_EXE : 'powershell')
+
   // ---- Replay: the reply text carries a link to /voice/play?name=<wav>. ----
   const REPLAY_NAME = /^(\d{2}-\d{2}-\d{2}-\d{2}-\d{2}|keep_[0-9A-Za-z_-]+)\.wav$/
   const REPLAY_DEBOUNCE_MS = 450
@@ -1927,12 +1932,18 @@ export function apply(ctx, config = {}) {
       log('audio sweep skipped: tools/recycle.ps1 is missing')
       return { moved: 0, skipped: 'no-script' }
     }
-    const result = spawnSync('powershell', [
-      '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', script, '-Paths', ...targets,
+    // 位置参数传多个路径：recycle.ps1 用 ValueFromRemainingArguments，
+    // 7 与 5.1 都能正确绑定（-Paths a b 这种写法反而会报「找不到位置参数」）。
+    const result = spawnSync(psExe(), [
+      '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', script, ...targets,
     ], { encoding: 'utf8', windowsHide: true, timeout: 120_000 })
-    const detail = String(result.stdout ?? '').trim() || String(result.stderr ?? '').trim() || ('rc=' + result.status)
+    const stdout = String(result.stdout ?? '').trim()
+    const stderr = String(result.stderr ?? '').trim()
+    const detail = stdout || stderr || ('rc=' + result.status)
+    const recycled = Number((stdout.match(/recycled=(\d+)/) ?? [])[1] ?? 0)
+    const failed = Number((stdout.match(/failed=(\d+)/) ?? [])[1] ?? 0)
     log(`audio sweep: ${targets.length} file(s) older than ${days}d — ${detail}`)
-    return { moved: targets.length }
+    return { moved: recycled, failed, candidates: targets.length }
   }
 
   // ---- 本机 TTS 服务：插件自己拉起、看护、退出时收掉 ----
@@ -2116,7 +2127,7 @@ export function apply(ctx, config = {}) {
       freeMicState.ourMessageAt = null
       log('free-mic paused for replay ' + path.basename(target))
     }
-    spawn('powershell', [
+    spawn(psExe(), [
       '-NoProfile', '-STA', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass',
       '-File', player, '-Path', target,
     ], { windowsHide: true, stdio: 'ignore' })

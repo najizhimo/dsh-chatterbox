@@ -89,8 +89,10 @@
 ## 2. 跑一次初始化脚本
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<插件>\tools\bootstrap.ps1"
+pwsh -NoProfile -File "<插件>\tools\bootstrap.ps1"
 ```
+
+> 没有装 PowerShell 7 也能跑：把命令里的 `pwsh -NoProfile -File` 换成 `powershell -NoProfile -ExecutionPolicy Bypass -File` 即可（脚本在 5.1 与 7 下都验证过）。
 
 它做四件事：
 

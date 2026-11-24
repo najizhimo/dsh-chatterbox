@@ -1,8 +1,8 @@
 ﻿# -*- coding: utf-8 -*-
 # dsh-chatterbox 一键初始化：识别 venv → 下载外部依赖 →（可选）Irodori venv → 打印后续命令
 #
-#   powershell -NoProfile -ExecutionPolicy Bypass -File "<插件>\tools\bootstrap.ps1"
-#   powershell ... -File bootstrap.ps1 -Port 18801 -WithTtsVenv
+#   pwsh -NoProfile -File "<插件>\tools\bootstrap.ps1"
+#   pwsh -File bootstrap.ps1 -Port 18801 -WithTtsVenv
 #
 # 只读网络、只写插件自己的目录与 %LOCALAPPDATA%\dsh\dsh-chatterbox；不碰别的项目。
 
@@ -24,7 +24,7 @@ Write-Host ''
 
 # 1) 识别 venv
 Write-Host '[1/4] 识别用 venv（sherpa-onnx 等 6 个包）'
-& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'setup-voice-venv.ps1') -BootstrapPython $BootstrapPython
+& (Join-Path $PSScriptRoot 'setup-voice-venv.ps1') -BootstrapPython $BootstrapPython
 if ($LASTEXITCODE -ne 0) { throw '识别 venv 建立失败' }
 
 # 2) 外部依赖（ASR 模型 / VAD / Irodori 源码）

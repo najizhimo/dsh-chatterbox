@@ -74,7 +74,7 @@ pip 包（第 1 行）的准确名：`sherpa-onnx`、`sounddevice`、`soundfile`
 ### 4.1 Python + 包
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<插件>\tools\setup-voice-venv.ps1"
+pwsh -NoProfile -File "<插件>\tools\setup-voice-venv.ps1"
 ```
 
 脚本会建 venv 并装那 6 个包；装完在依赖页填「识别用 Python」= `<venv>\Scripts\pythonw.exe`（默认已在那个位置）。
