@@ -13,7 +13,7 @@
 
 ## 安装
 
-前置：Windows 10/11、DSH、Python 3.10+、[uv](https://github.com/astral-sh/uv)、约 10 GB 磁盘、端口 18801/8763 空闲。
+前置：Windows 10/11、DSH、Python 3.10+、[uv](https://github.com/astral-sh/uv)、约 10 GB 磁盘、端口 18801/8763 空闲；**推荐 PowerShell 7**（脚本在 5.1 下也能跑，7 更稳）。
 
 **从 GitHub 安装**：插件管理器 → 安装 bundle → 填 `github:najizhimo/dsh-chatterbox`，重启 DSH。
 也可以 `git clone` 后用 `link:<插件目录>` 安装（见安装指南）。
